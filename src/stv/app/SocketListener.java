@@ -17,25 +17,34 @@ public class SocketListener {
 	{
 		Runnable serverTask = new Runnable()
 		{
-			@SuppressWarnings("resource")
 			@Override
-			public void run() {
+			public void run() 
+			{
 				ServerSocket socket = null;
-				try {
+				try 
+				{
 					socket = new ServerSocket(13337);
-				} catch (IOException e) {
+				} 
+				catch (IOException e) 
+				{
 					e.printStackTrace();
 				}
-				while(true)
+				if(socket != null && !socket.isClosed())
 				{
-					System.out.println("Oh god");
-					Socket clientSocket = null;
-					try {
-						clientSocket = socket.accept();
-					} catch (IOException e) {
-						e.printStackTrace();
+					while(true)
+					{
+						Socket clientSocket = null;
+						try 
+						{
+							System.out.println("Waiting for client input");
+							clientSocket = socket.accept();
+						} 
+						catch (IOException e) 
+						{
+							e.printStackTrace();
+						}
+						proc.process(clientSocket);
 					}
-					proc.process(clientSocket);
 				}
 			}
 		};

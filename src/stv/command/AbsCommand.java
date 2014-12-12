@@ -3,9 +3,9 @@ package stv.command;
 import stv.json.JSONObject;
 
 public abstract class AbsCommand {
-	protected JSONObject[] params;
+	protected JSONObject params;
 	
-	public AbsCommand(JSONObject[] params)
+	public AbsCommand(JSONObject params)
 	{
 		this.params = params;
 	}
