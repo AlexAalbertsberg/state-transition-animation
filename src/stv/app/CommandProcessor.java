@@ -7,11 +7,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
+import javafx.stage.Stage;
 import stv.command.AbsCommand;
 import stv.command.MoveCommand;
 import stv.command.SetCommand;
 import stv.json.JSONObject;
-import javafx.stage.Stage;
 
 public class CommandProcessor 
 {
@@ -29,38 +29,36 @@ public class CommandProcessor
 			try
 			{
 				BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-				
-				String inputLine = null;
-				String result = "";
-				while((inputLine = in.readLine()) != null)
+				//BufferedWriter out = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+				while(true)
 				{
-					result = result.concat(inputLine);
-				}
-				
-				JSONObject json = new JSONObject(result);
-				
-				if(json.has("command"))
-				{
-					String commandId = json.getString("command");
-					System.out.println(commandId);
-					AbsCommand command = null;
+					final String result = in.readLine();
+					if(result == null || result.trim().equals("")) break;
+					System.out.println("Result: " + result);
+					JSONObject json = new JSONObject(result);
 					
-					if(commandId.toLowerCase().equals("init")) command = null;
-					else if(commandId.toLowerCase().equals("set")) command = new SetCommand(json);
-					else if(commandId.toLowerCase().equals("move")) command = new MoveCommand(json);
-					
-					if(command != null)
+					if(json.has("command"))
 					{
-						command.performCommand();
+						String commandId = json.getString("command");
+						AbsCommand command = null;
+						
+						if(commandId.toLowerCase().equals("init")) command = null;
+						else if(commandId.toLowerCase().equals("set")) command = new SetCommand(json, stage);
+						else if(commandId.toLowerCase().equals("move")) command = new MoveCommand(json, stage);
+						
+						if(command != null)
+						{
+							command.performCommand();
+						}
+						else
+						{
+							System.out.println("Command not recognized");
+						}
 					}
 					else
 					{
-						System.out.println("Command not recognized");
+						System.out.println("JSON object does not include a command field");
 					}
-				}
-				else
-				{
-					System.out.println("JSON object does not include a command field");
 				}
 			} catch (IOException e)
 			{

@@ -1,13 +1,16 @@
 package stv.command;
 
+import javafx.stage.Stage;
 import stv.json.JSONObject;
 
 public abstract class AbsCommand {
-	protected JSONObject params;
+	protected JSONObject json;
+	protected Stage stage;
 	
-	public AbsCommand(JSONObject params)
+	public AbsCommand(JSONObject params, Stage stage)
 	{
-		this.params = params;
+		this.json = params;
+		this.stage = stage;
 	}
 	
 	public abstract void performCommand();

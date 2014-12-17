@@ -43,6 +43,7 @@ public class SocketListener {
 						{
 							e.printStackTrace();
 						}
+						System.out.println("Client input received");
 						proc.process(clientSocket);
 					}
 				}
