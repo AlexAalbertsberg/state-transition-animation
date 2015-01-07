@@ -13,6 +13,6 @@ public abstract class AbsCommand {
 		this.stage = stage;
 	}
 	
-	public abstract void performCommand();
+	public abstract String performCommand();
 	
 }

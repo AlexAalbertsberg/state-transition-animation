@@ -7,6 +7,7 @@ import java.net.Socket;
 public class SocketListener {
 	
 	private CommandProcessor proc;
+	private ServerSocket socket;
 	
 	public SocketListener(CommandProcessor proc)
 	{
@@ -20,7 +21,6 @@ public class SocketListener {
 			@Override
 			public void run() 
 			{
-				ServerSocket socket = null;
 				try 
 				{
 					socket = new ServerSocket(13337);

@@ -1,16 +1,21 @@
 package stv.command;
 
+import java.io.ByteArrayInputStream;
+
+import com.sun.org.apache.xml.internal.security.exceptions.Base64DecodingException;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 import javafx.application.Platform;
-import javafx.css.Styleable;
-import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
-import javafx.scene.shape.Shape;
+import javafx.scene.shape.Ellipse;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import stv.app.Main;
+import stv.json.JSONArray;
 import stv.json.JSONObject;
 
 public class SetCommand extends AbsCommand
@@ -31,48 +36,71 @@ public class SetCommand extends AbsCommand
 	}
 
 	@Override
-	public void performCommand() 
+	public String performCommand() 
 	{
-		System.out.println("Performing set command");
-		if(json.has("id"))
+		if(json.has(CommandConstants.IDENTIFIER))
 		{
-			id = json.getString("id"); 
+			id = json.getString(CommandConstants.IDENTIFIER); 
 		}
-		if(json.has("posx"))
+		if(json.has(CommandConstants.XPOS))
 		{
-			positionX = json.getInt("posx");
+			positionX = json.getInt(CommandConstants.XPOS);
 		}
-		if(json.has("posy"))
+		if(json.has(CommandConstants.YPOS))
 		{
-			positionY = json.getInt("posy");
+			positionY = json.getInt(CommandConstants.YPOS);
 		}
-		if(json.has("colorCode"))
+		if(json.has(CommandConstants.COLOR))
 		{
-			colorCode = json.getString("colorCode");
+			colorCode = json.getString(CommandConstants.COLOR);
 		}
-		
-		if(json.has("shape"))
+		if(json.has(CommandConstants.SHAPE))
 		{
-			String shapeStr = json.getString("shape");
+			String shapeStr = json.getString(CommandConstants.SHAPE);
 			
-			if(shapeStr.equals("circle"))
+			if(shapeStr.equals(CommandConstants.SHAPE_CIRCLE))
 			{
 				node = new Circle(positionX,positionY,25, Paint.valueOf(colorCode));
 			}
-		}		
-		Main.addControl(id, node);
-		
-		Platform.runLater(new Runnable()
-		{
-
-			@Override
-			public void run()
+			else if(shapeStr.equals(CommandConstants.SHAPE_RECTANGLE))
 			{
-				Pane sp = (Pane)stage.getScene().getRoot();
-				sp.getChildren().add(node);
+				node = new Rectangle(25, 25, Paint.valueOf(colorCode));
+				node.setLayoutX(positionX);
+				node.setLayoutY(positionY);
+			}
+		}
+		else if(json.has(CommandConstants.IMAGE))
+		{
+			String byteString = json.getString(CommandConstants.IMAGE);
+			byte[] b = null;
+			try
+			{
+				b = Base64.decode(byteString);
+			} catch (Base64DecodingException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			
+			if(b != null)
+			{
+				Image img = new Image(new ByteArrayInputStream(b));
+				ImageView view = new ImageView(img);
+				view.relocate(positionX, positionY);
+			
+				node = view;
+			}
+		}
+
+		// TODO Check for existence of node. IF it exists, do not add this command to the stage.
+		node.setId(id);
+		
+		Platform.runLater(() -> 
+		{
+			Pane sp = (Pane)stage.getScene().getRoot();
+			sp.getChildren().add(node);
+			System.out.println(node.getId());
 		});
-		System.out.println("Set command execution complete");
+		return "Set command execution completed successfully.";
 	}	 
 }
