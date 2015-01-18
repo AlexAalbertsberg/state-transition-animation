@@ -57,6 +57,7 @@ public class CommandProcessor
 					if(json.has(CommandConstants.COMMAND_KEYWORD))
 					{
 						String commandId = json.getString(CommandConstants.COMMAND_KEYWORD);
+						System.out.println(commandId);
 						AbsCommand command = null;
 						
 						switch(commandId)

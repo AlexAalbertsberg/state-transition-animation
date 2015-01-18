@@ -1,5 +1,4 @@
 package stv.test;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -8,12 +7,11 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-
 import stv.json.JSONObject;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
 
 
 public class Client

@@ -1,0 +1,9 @@
+command=init;height=500;width=500
+command=set;id=wolf;posx=0;posy=0;image=wolf.jpg
+command=set;id=goat;posx=0;posy=100;image=goat.png
+command=set;id=cabbage;posx=0;posy=200;image=cabbage.png
+command=move;id=goat;posx=500;posy=100
+command=move;id=cabbage;posx=500;posy=200
+command=move;id=goat;posx=0;posy=100
+command=move;id=wolf;posx=500;posy=0
+command=move;id=goat;posx=500;posy=100
