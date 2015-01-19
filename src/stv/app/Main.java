@@ -20,12 +20,13 @@ public class Main extends Application
 	}
 	
 	public static void init(double width, double height)
-	{
+	{		
 		Pane p = new Pane();
 		
 		stage.setScene(new Scene(p, width, height));
 		cmdProc.setStage(stage);
 		stage.show();
+		stage.centerOnScreen();
 	}
 	
 	public static void main(String[] args)

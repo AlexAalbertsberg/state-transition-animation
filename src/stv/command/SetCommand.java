@@ -93,6 +93,7 @@ public class SetCommand extends AbsCommand
 		// TODO Check for existence of node. IF it exists, do not add this command to the stage.
 		node.setId(id);
 		
+		
 		Platform.runLater(() -> 
 		{
 			Pane sp = (Pane)stage.getScene().getRoot();
