@@ -1,0 +1,132 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{caption}
+
+\begin{document}
+\title{Software Specification \\ \vspace{2mm} {\large Dynamic Visualization of State Transitions}}
+\author{Alex Aalbertsberg (s1008129)}
+\maketitle
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\section{Introduction}
+
+This document will describe a software system design for an application that can dynamically receive information from applications that generate state diagrams about transitions that take place during a simulation. The application will take the information about these transitions and visually represent them, so as to create a more clear full picture of the situation for the end user.
+
+There are several tools in existence that generate state diagrams according to complex grammars/alphabets. These diagrams are often not as intuitive to read for an end user, whereas a graphical representation of the situation would provide a lot of clarity as to what the diagram actually does. Therefore, the idea behind this application is to visually represent the current situation of a state diagram as it runs through simulation. This should help the end user get a clear picture of what is actually happening, as opposed to merely seeing the relatively unintelligible state transitions.
+
+\clearpage
+\section{Requirements}
+
+The final product must:
+
+\begin{enumerate}
+	\item Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.
+	\item Receive information about state transition steps from any state diagram tool.
+	\item Interpret the received information and translate the abstract syntax that is received to a graphical representation AKA the concrete syntax.
+	\item Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.
+	\item Update the visual representation (concrete syntax) according to the transition information that has been received.
+\end{enumerate}
+
+\clearpage
+\section{Technology}
+\subsection{Design Choices}
+This section will describe the technology that has been used to create the final product. The decisions to utilize the technology listed below were made during the early stages of the project.\\\\
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c || c | c |}
+			\hline
+			Criteria & Java & C\# \\ \hline
+			GUI Support & Yes, in Java 8 (JavaFX) & Yes \\ \hline
+			Networking Support & Yes & Yes \\ \hline
+			Multi-OS & Yes & Limited* \\ \hline
+		\end{tabular}
+		\caption{Comparison of Programming Languages}
+	\end{center}
+\end{table}\\\\
+Based on the above criteria, the decision was made to write the application in Java 8 and uses the native library JavaFX for user interfacing. Java has been chosen in order to maintain as much scalability as possible.
+\begin{table}[h]
+	\begin{center}
+		\begin{tabular}{| c || c | c | c |}
+			\hline
+			Criteria & JSON & CSV & XML \\ \hline
+			Overhead & Small & Small & Large \\ \hline
+			Language Support & Open-source & None & In-built \\ \hline
+			Parseability & Easy & Medium & Easy \\ \hline
+		\end{tabular}
+		\caption{Comparison of Transport Protocols}
+	\end{center}
+\end{table}\\\\
+Based on the above criteria, the decision was made to let communication take place by sending JSON objects over an established TCP connection. XML's large overhead and no support existing for parsing CSV data left JSON to be the best option. The application therefore adopts the client-server paradigm as its communication protocol. This means that client applications (i.e. the application simulating the state diagram) will connect to the server application and send JSON objects containing information about the steps that have been taken, so that the server application may perform actions that correspond with the received information. You will find a description of currently supported commands and their parameters below.
+The library that has been used for JSON is the one from www.json.org. Their source code for supporting JSON is freely available on their website.
+\subsection{Application Design Specifics}
+The server application itself will consist of several classes:
+\begin{enumerate}
+\item The Main class. This class initializes the GUI and TCP Server, so that commands may be interpreted and updated on the user interface.
+\item The CommandProcessor class. This class deciphers the JSON data sent to the TCP server, interprets and then executes the specified command.
+\item The AbsCommand (abstract) class. This class is a framework for the implementation of any command. It only contains a constructor that requires a JSONObject, and a performCommand method that will execute whatever the JSON data tells it to do.
+\item All classes that specify a certain command derive from the AbsCommand class.
+\item The SocketListener class. This class listens for incoming data on a certain port and sends the received information through to the CommandProcessor.
+\item The JSONObject class. This class encapsulates an associative set of objects that can easily be sent over a TCP connection.
+\end{enumerate}
+The client application will have to connect to the server application's IP address and port number on which it is listening. Subsequently, the client will be able to send JSONObjects over this established connection, which the server application will parse. The parsed parameters should then lead to a desired result on the GUI.
+
+\subsection{Commands and Parameters}
+
+Several initial commands and their parameters that are supported by the application are as follows:
+\begin{enumerate}
+	\item init. This command allows the user to set initial GUI/application values.
+		\begin{enumerate}
+			\item GUI width.
+			\item GUI height.
+			\item Element scale.
+		\end{enumerate}
+	\item set. This command allows the user to create elements on the GUI.
+		\begin{enumerate}
+			\item Identifier.
+			\item X-axis position.
+			\item Y-axis position.
+			\item Width.
+			\item Height.
+			\item Color.
+			\item Shape.
+		\end{enumerate}
+	\item move. This command allows the user to move existing GUI elements.
+		\begin{enumerate}
+			\item Identifier.
+			\item New X-axis position.
+			\item New Y-axis position.
+		\end{enumerate}
+	\item remove. This command allows the user to remove an existing GUI element.
+		\begin{enumerate}
+			\item Identifier.
+		\end{enumerate}
+\end{enumerate}
+
+
+\clearpage
+\section{Test results}
+
+For the sake of properly testing the final product, a couple of (commonly used) diagrams will be defined for testing purposes:
+
+\begin{enumerate}
+	\item The wolf-goat-cabbage problem
+	\item An elevator with x floors
+	\item Dining philosophers
+	\item Christmas tree
+\end{enumerate}
+
+\subsection{Wolf-Goat-Cabbage Problem}
+This problem deals with the following: A man is standing on the bank of a river with a wolf, a goat and a cabbage. The man wants to cross the river with all three of them. However, his boat will only allow him to take one of the three with him at a time. The other two will have to wait. When the man is not there, the wolf is capable of eating the goat, and the goat is capable of eating the cabbage.
+
+For this problem, both a success and a failure scenario have been created. These scenarios seem to work fine.
+Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
+
+\clearpage
+\section{Related work}
+JTorX - a tool for Model-Based Testing.
+
+Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.
+
+\end{document}
