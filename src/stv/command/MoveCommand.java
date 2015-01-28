@@ -8,12 +8,22 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import stv.json.JSONObject;
 
-public class MoveCommand extends AbsCommand {
+/**
+ * Tells a GUI element to move somewhere.
+ * @author Alex Aalbertsberg
+ */
+public class MoveCommand extends AbsCommand 
+{
 	
 	private String id;
 	private int positionX;
 	private int positionY;
 	
+	/**
+	 * Constructor
+	 * @param json - Received JSONObject.
+	 * @param stage - Server application's stage.
+	 */
 	public MoveCommand(JSONObject json, Stage stage) {
 		super(json, stage);
 	}
@@ -35,29 +45,44 @@ public class MoveCommand extends AbsCommand {
 			positionY = json.getInt(CommandConstants.YPOS);
 		}
 		
+		// Get the stage's pane.
 		Pane sp = (Pane)stage.getScene().getRoot();
+		// Get the pane's children.
 		List<Node> list = sp.getChildren();
 		
-		
-		if(list != null && !list.isEmpty())
+		// check if an id was passed.
+		if(id != null)
 		{
-			for(int i = 0; i < list.size(); i++)
+			// Check whether nodes exist.
+			if(list != null && !list.isEmpty())
 			{
-				if(list.get(i).getId() != null && list.get(i).getId().equals(id))
+				// Loop through all nodes.
+				for(int i = 0; i < list.size(); i++)
 				{
-					Node n = list.get(i);
-					Platform.runLater(() ->
+					// Check for the received id.
+					if(list.get(i).getId() != null && list.get(i).getId().equals(id))
 					{
-						n.setLayoutX(positionX);
-						n.setLayoutY(positionY);
-					});
+						// Node found!
+						Node n = list.get(i);
+						// Apply new X and Y coordinates to the node.
+						// This needs to happen on the GUI thread, so we used runLater.
+						Platform.runLater(() ->
+						{
+							n.setLayoutX(positionX);
+							n.setLayoutY(positionY);
+						});
+					}
 				}
+				return "Move command executed successfully.";
 			}
-			return "Move command executed successfully.";
+			else
+			{
+				return "List is null or empty.";
+			}
 		}
 		else
 		{
-			return "List is null or empty.";
+			return "No id was specified in the JSONObject.";
 		}
 	}
 }

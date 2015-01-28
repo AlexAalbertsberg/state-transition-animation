@@ -25,8 +25,10 @@ public class RemoveCommand extends AbsCommand
 		
 		Node node = null;
 		
+		// Loop through all nodes.
 		for(Node n : stage.getScene().getRoot().getChildrenUnmodifiable())
 		{
+			// Check for the specified id.
 			if(n.getId() != null && n.getId().equals(id))
 			{
 				node = n;
@@ -37,6 +39,7 @@ public class RemoveCommand extends AbsCommand
 		
 		if(nRemove != null)
 		{
+			// Node to remove was found.
 			Platform.runLater(() ->
 			{
 				((Pane)stage.getScene().getRoot()).getChildren().remove(nRemove);

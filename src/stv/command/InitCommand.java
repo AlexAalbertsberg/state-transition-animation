@@ -5,11 +5,20 @@ import javafx.stage.Stage;
 import stv.app.Main;
 import stv.json.JSONObject;
 
+/**
+ * Initialization command
+ * @author Alex Aalbertsberg
+ */
 public class InitCommand extends AbsCommand
 {
 	private double height;
 	private double width;
 	
+	/**
+	 * Constructor
+	 * @param params - Received JSONObject.
+	 * @param stage - Server application's stage.
+	 */
 	public InitCommand(JSONObject params, Stage stage)
 	{
 		super(params, stage);
@@ -27,6 +36,8 @@ public class InitCommand extends AbsCommand
 			height = json.getDouble(CommandConstants.STAGE_HEIGHT);
 		}
 		
+		// Since this execution does not run on the main thread,
+		// runLater will place the execution of GUI components on the correct thread. 
 		Platform.runLater(() ->
 		{
 			Main.init(width, height);

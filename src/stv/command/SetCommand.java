@@ -67,6 +67,7 @@ public class SetCommand extends AbsCommand
 				node.setLayoutY(positionY);
 			}
 		}
+		// An image was sent.
 		else if(json.has(CommandConstants.IMAGE))
 		{
 			String byteString = json.getString(CommandConstants.IMAGE);
@@ -90,15 +91,21 @@ public class SetCommand extends AbsCommand
 			}
 		}
 
-		// TODO Check for existence of node. IF it exists, do not add this command to the stage.
+		for(Node n : stage.getScene().getRoot().getChildrenUnmodifiable())
+		{
+			if(n.getId() != null && n.getId().equals(id))
+			{
+				return "Node already exists. Command will not be executed.";
+			}
+		}
+		
 		node.setId(id);
-		
-		
 		Platform.runLater(() -> 
 		{
+			// Get stage's pane.
 			Pane sp = (Pane)stage.getScene().getRoot();
+			// Add node as child to pane.
 			sp.getChildren().add(node);
-			System.out.println(node.getId());
 		});
 		return "Set command execution completed successfully.";
 	}	 

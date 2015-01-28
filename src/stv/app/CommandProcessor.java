@@ -16,18 +16,28 @@ import stv.command.RemoveCommand;
 import stv.command.SetCommand;
 import stv.json.JSONObject;
 
+/**
+ * The CommandProcessor class receives and sends back data into the socket's respective output and input streams.
+ * @author Alex Aalbertsberg
+ *
+ */
 public class CommandProcessor 
 {
 	private Stage stage;
 	private BufferedReader in;
 	private PrintWriter out;
 	
+	/**
+	 * Handles the input and output of the connected socket.
+	 * @param clientSocket - Socket upon which a connection has been established
+	 */
 	public void process(Socket clientSocket)
 	{
 		if(clientSocket != null)
 		{
 			try
 			{
+				// Initialize socket reader and writer objects
 				in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 				out = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
 			} 
@@ -60,6 +70,7 @@ public class CommandProcessor
 						System.out.println(commandId);
 						AbsCommand command = null;
 						
+						// find out which command has been issued
 						switch(commandId)
 						{
 							case CommandConstants.CMD_INIT:
@@ -90,7 +101,7 @@ public class CommandProcessor
 						returnMessage = "JSON object does not include a command field";
 					}
 				}
-				
+				// return message is not empty, this implies that it should be sent back to the client
 				if(!returnMessage.isEmpty())
 				{
 					out.println(returnMessage);
