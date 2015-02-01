@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{article}
+\documentclass[11pt,a4paper,twocolumn]{article}
 \usepackage{caption}
 
 \begin{document}
@@ -10,13 +10,17 @@
 \tableofcontents
 
 \clearpage
+\section{Abstract}
+To-do
+
 \section{Introduction}
+
+In the current day and age, model-based software development is a technique that is often used to test the requirements and functionalities of a software system before physically building the system. 
 
 This document will describe a software system design for an application that can dynamically receive information from applications that generate state diagrams about transitions that take place during a simulation. The application will take the information about these transitions and visually represent them, so as to create a more clear full picture of the situation for the end user.
 
 There are several tools in existence that generate state diagrams according to complex grammars/alphabets. These diagrams are often not as intuitive to read for an end user, whereas a graphical representation of the situation would provide a lot of clarity as to what the diagram actually does. Therefore, the idea behind this application is to visually represent the current situation of a state diagram as it runs through simulation. This should help the end user get a clear picture of what is actually happening, as opposed to merely seeing the relatively unintelligible state transitions.
 
-\clearpage
 \section{Requirements}
 
 The final product must:
@@ -29,7 +33,6 @@ The final product must:
 	\item Update the visual representation (concrete syntax) according to the transition information that has been received.
 \end{enumerate}
 
-\clearpage
 \section{Technology}
 \subsection{Design Choices}
 This section will describe the technology that has been used to create the final product. The decisions to utilize the technology listed below were made during the early stages of the project.\\\\
@@ -105,7 +108,6 @@ Several initial commands and their parameters that are supported by the applicat
 \end{enumerate}
 
 
-\clearpage
 \section{Test results}
 
 For the sake of properly testing the final product, a couple of (commonly used) diagrams will be defined for testing purposes:
@@ -123,10 +125,16 @@ This problem deals with the following: A man is standing on the bank of a river 
 For this problem, both a success and a failure scenario have been created. These scenarios seem to work fine.
 Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
 
-\clearpage
 \section{Related work}
 JTorX - a tool for Model-Based Testing.
 
-Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.
+Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.dg
+
+\section{Conclusions}
+
+
+
+
+\section{Discussion and further work}
 
 \end{document}
