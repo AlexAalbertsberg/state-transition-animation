@@ -1,8 +1,9 @@
-\documentclass[11pt,a4paper,twocolumn]{article}
+\documentclass[11pt,a4paper]{article}
 \usepackage{caption}
+\usepackage{listings}
 
 \begin{document}
-\title{Software Specification \\ \vspace{2mm} {\large Dynamic Visualization of State Transitions}}
+\title{Final Report \\ \vspace{2mm} {\large Dynamic Visualization of State Transitions}}
 \author{Alex Aalbertsberg (s1008129)}
 \maketitle
 
@@ -10,25 +11,24 @@
 \tableofcontents
 
 \clearpage
-\section{Abstract}
-To-do
-
 \section{Introduction}
 
-In the current day and age, model-based software development is a technique that is often used to test the requirements and functionalities of a software system before physically building the system. 
+In the current day and age, model-based software development is a technique that is often used to test the requirements and functionalities of a software system before physically building the system. These models are often not very readable to the tester and will not provide a clear overview of object states. The purpose behind this project is to create a way for users to have a visual overview of the software system's state while running simulation. This will provide a clear picture of the way in which the system operates.
 
 This document will describe a software system design for an application that can dynamically receive information from applications that generate state diagrams about transitions that take place during a simulation. The application will take the information about these transitions and visually represent them, so as to create a more clear full picture of the situation for the end user.
 
-There are several tools in existence that generate state diagrams according to complex grammars/alphabets. These diagrams are often not as intuitive to read for an end user, whereas a graphical representation of the situation would provide a lot of clarity as to what the diagram actually does. Therefore, the idea behind this application is to visually represent the current situation of a state diagram as it runs through simulation. This should help the end user get a clear picture of what is actually happening, as opposed to merely seeing the relatively unintelligible state transitions.
+The system has been set up in a modular way, so that expansion by adding additional functionality is not a difficult task. How this modular setup has been established will be described further in the report.
 
 \section{Requirements}
 
-The final product must:
+The first stage of the project was to establish proper boundaries for the project. This section lists the requirements that were set for the final product. These requirements were established over several review sessions.
+
+The final product of this project should:
 
 \begin{enumerate}
 	\item Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.
-	\item Receive information about state transition steps from any state diagram tool.
-	\item Interpret the received information and translate the abstract syntax that is received to a graphical representation AKA the concrete syntax.
+	\item Be able to receive information about state transition steps from any state diagram tool.
+	\item Be able to interpret the received information and translate the abstract syntax that is received to a graphical representation which is also known as the concrete syntax.
 	\item Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.
 	\item Update the visual representation (concrete syntax) according to the transition information that has been received.
 \end{enumerate}
@@ -36,6 +36,7 @@ The final product must:
 \section{Technology}
 \subsection{Design Choices}
 This section will describe the technology that has been used to create the final product. The decisions to utilize the technology listed below were made during the early stages of the project.\\\\
+First, we needed to decide what programming language to use. The programming languages that I was most familiar with were C\# and Java, so we decided to mainly focus on those languages. Below you will find a table with characteristics for each programming languages
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c || c | c |}
@@ -81,43 +82,61 @@ Several initial commands and their parameters that are supported by the applicat
 \begin{enumerate}
 	\item init. This command allows the user to set initial GUI/application values.
 		\begin{enumerate}
-			\item GUI width.
-			\item GUI height.
-			\item Element scale.
+			\item GUI width. (int/double)
+			\item GUI height. (int/double)
 		\end{enumerate}
+	\begin{lstlisting}[language=java]
+	JSONObject obj = new JSONObject();
+	obj.set(``command'', ``init'');
+	obj.set(``stageWidth'', 500);
+	obj.set(``stageHeight'', 500);
+	\end{lstlisting}
 	\item set. This command allows the user to create elements on the GUI.
 		\begin{enumerate}
-			\item Identifier.
-			\item X-axis position.
-			\item Y-axis position.
-			\item Width.
+			\item Identifier. (String)
+			\item X-axis position. (int/double)
+			\item Y-axis position. (int/double)
+			\item Width. 
 			\item Height.
 			\item Color.
 			\item Shape.
 		\end{enumerate}
+	\begin{lstlisting}[language=java]
+	JSONObject obj = new JSONObject();
+	obj.set(``command'',``set'');
+	obj.set(``id'',``wolf'');
+	obj.set(``posx'', 100);
+	obj.set(``posy'', 100);
+	obj.set(``image'',``wolf.jpg'');
+	\end{lstlisting}
 	\item move. This command allows the user to move existing GUI elements.
 		\begin{enumerate}
 			\item Identifier.
 			\item New X-axis position.
 			\item New Y-axis position.
 		\end{enumerate}
+	\begin{lstlisting}[language=java]
+	JSONObject obj = new JSONObject();
+	obj.set(``command'', ``move'');
+	obj.set(``id'', ``wolf'');
+	obj.set(``posx'', 200);
+	obj.set(``posy'', 200);
+	\end{lstlisting}
 	\item remove. This command allows the user to remove an existing GUI element.
 		\begin{enumerate}
 			\item Identifier.
 		\end{enumerate}
-\end{enumerate}
+	\begin{lstlisting}[language=java]
+	JSONObject obj = new JSONObject();
+	obj.set(``command'', ``remove'');
+	obj.set(``id'', ``goat'');
+	\end{lstlisting}
+\end{enumerate}-
 
 
 \section{Test results}
 
-For the sake of properly testing the final product, a couple of (commonly used) diagrams will be defined for testing purposes:
-
-\begin{enumerate}
-	\item The wolf-goat-cabbage problem
-	\item An elevator with x floors
-	\item Dining philosophers
-	\item Christmas tree
-\end{enumerate}
+For the sake of properly testing the final product, a testing method has been defined. We will check the functionalities of the main program with a simulation of the wolf-goat-cabbage problem, as described below.
 
 \subsection{Wolf-Goat-Cabbage Problem}
 This problem deals with the following: A man is standing on the bank of a river with a wolf, a goat and a cabbage. The man wants to cross the river with all three of them. However, his boat will only allow him to take one of the three with him at a time. The other two will have to wait. When the man is not there, the wolf is capable of eating the goat, and the goat is capable of eating the cabbage.
@@ -125,16 +144,33 @@ This problem deals with the following: A man is standing on the bank of a river 
 For this problem, both a success and a failure scenario have been created. These scenarios seem to work fine.
 Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
 
-\section{Related work}
-JTorX - a tool for Model-Based Testing.
-
-Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.dg
 
 \section{Conclusions}
 
+In this section, we will check our final product by the standards of the requirements that were set at the start of the project:
 
+Requirement 1: Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.
+Result: The init and set commands provide functionality for an external application to set-up the initial GUI and instantiate objects that require a visual representation.
 
+Requirement 2:Be able to receive information about state transition steps from any state diagram tool.
+Result: The application listens for a TCP connection on a certain port. Once a client application connects, that application may then send JSON objects over the connection.
 
-\section{Discussion and further work}
+Requirement 3: Be able to interpret the received information and translate the abstract syntax that is received to a graphical representation which is also known as the concrete syntax.
+Result: The application reconstructs the JSON object it receives over the TCP connection and then translates the information contained to operations on the graphical interface.
+
+Requirement 4: Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.
+Result: A set of commands and respective parameters has been defined, as well as the commands' respective operations on the graphical user interface.
+
+Requirement 5: Update the visual representation (concrete syntax) according to the transition information that has been received.
+Result: Each command has a corresponding effect on the state of the graphical user interface.
+
+All requirements set at the start of the project have been met.
+
+%Discussion and further development?
+
+\section{Related work}
+JTorX - a tool for Model-Based Testing.
+
+Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.
 
 \end{document}

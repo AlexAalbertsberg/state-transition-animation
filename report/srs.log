@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.27)  1 FEB 2015 15:24
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.27)  5 FEB 2015 21:56
 entering extended mode
 **C:/Users/Alex/workspace/stv/report/srs.tex
 (C:/Users/Alex/workspace/stv/report/srs.tex
@@ -47,105 +47,99 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \caption@hangindent=\dimen109
 )
 \c@ContinuedFloat=\count87
-) (C:\Users\Alex\workspace\stv\report\srs.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 4.
-LaTeX Font Info:    ... okay on input line 4.
+) ("D:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.sty"
+\lst@mode=\count88
+\lst@gtempboxa=\box26
+\lst@token=\toks15
+\lst@length=\count89
+\lst@currlwidth=\dimen110
+\lst@column=\count90
+\lst@pos=\count91
+\lst@lostspace=\dimen111
+\lst@width=\dimen112
+\lst@newlines=\count92
+\lst@lineno=\count93
+\lst@maxwidth=\dimen113
+("D:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstmisc.sty"
+File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
+\c@lstnumber=\count94
+\lst@skipnumbers=\count95
+\lst@framebox=\box27
+) ("D:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\listings.cfg"
+File: listings.cfg 2014/09/06 1.5e listings configuration
+))
+Package: listings 2014/09/06 1.5e (Carsten Heinz)
+(C:\Users\Alex\workspace\stv\report\srs.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
+\c@lstlisting=\count96
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 7.
+(Font)              <12> on input line 8.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 7.
+(Font)              <8> on input line 8.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 7.
-[1{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+(Font)              <6> on input line 8.
+[1
 
-
-
-] (C:\Users\Alex\workspace\stv\report\srs.toc
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (C:\Users\Alex\workspace\
+stv\report\srs.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 4.
 )
 \tf@toc=\write3
 [2
 
-
 ]
-Overfull \hbox (72.31778pt too wide) in paragraph at lines 36--43
- [] 
- []
-
-
-Overfull \hbox (51.92406pt too wide) in paragraph at lines 49--56
- [] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--61
+Underfull \hbox (badness 10000) in paragraph at lines 38--67
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 33--61
+Underfull \hbox (badness 10000) in paragraph at lines 38--67
 
  []
 
 
-Underfull \hbox (badness 1221) in paragraph at lines 33--61
-\OT1/cmr/m/n/10.95 Based on the above cri-te-ria, the de-ci-sion
- []
+Underfull \hbox (badness 10000) in paragraph at lines 38--67
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 33--61
-
- []
-
-
-Underfull \hbox (badness 1221) in paragraph at lines 33--61
-\OT1/cmr/m/n/10.95 Based on the above cri-te-ria, the de-ci-sion
- []
-
-
-Underfull \hbox (badness 1024) in paragraph at lines 33--61
-\OT1/cmr/m/n/10.95 that has been used for JSON is the one
  []
 
 [3
 
-]
-Underfull \hbox (badness 1394) in paragraph at lines 68--69
-[]\OT1/cmr/m/n/10.95 The Sock-etLis-tener class. This class
- []
-
-[4] [5] (C:\Users\Alex\workspace\stv\report\srs.aux) ) 
+] [4] ("D:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
+File: lstlang1.sty 2014/09/06 1.5e listings language file
+) [5] [6] [7] [8] (C:\Users\Alex\workspace\stv\report\srs.aux) ) 
 Here is how much of TeX's memory you used:
- 1319 strings out of 493921
- 22287 string characters out of 3144879
- 88418 words of memory out of 3000000
- 4673 multiletter control sequences out of 15000+200000
+ 2614 strings out of 493921
+ 41157 string characters out of 3144879
+ 117867 words of memory out of 3000000
+ 5952 multiletter control sequences out of 15000+200000
  8811 words of font info for 31 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 36i,8n,38p,774b,304s stack positions out of 5000i,500n,10000p,200000b,50000s
-<D:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Program Files (x86)/MiK
-TeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program Files (x86)/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Program Files (x86)/MiKTeX 2
-.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Program Files (x86)/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on C:/Users/Alex/workspace/stv/report/srs.pdf (5 pages, 89147 by
+ 36i,8n,42p,774b,1065s stack positions out of 5000i,500n,10000p,200000b,50000s
+<D:/Program Fil
+es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Program Files
+ (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program Files (
+x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Program Files (x86
+)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Program Files (x86)/M
+iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on C:/Users/Alex/workspace/stv/report/srs.pdf (8 pages, 93917 by
 tes).
 PDF statistics:
- 38 PDF objects out of 1000 (max. 8388607)
+ 49 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

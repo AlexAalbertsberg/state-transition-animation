@@ -13,6 +13,12 @@ INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/caption/caption3.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/caption/caption3.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/graphics/keyval.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/graphics/keyval.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.cfg
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.cfg
 INPUT C:/Users/Alex/workspace/stv/report/srs.aux
 INPUT C:/Users/Alex/workspace/stv/report/srs.aux
 OUTPUT C:/Users/Alex/workspace/stv/report/srs.aux
@@ -37,6 +43,8 @@ INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmmi10.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
 OUTPUT C:/Users/Alex/workspace/stv/report/srs.toc
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
+INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT C:/Users/Alex/workspace/stv/report/srs.aux
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb
