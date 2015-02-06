@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.27)  5 FEB 2015 21:56
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2014.9.27)  6 FEB 2015 16:11
 entering extended mode
-**C:/Users/Alex/workspace/stv/report/srs.tex
-(C:/Users/Alex/workspace/stv/report/srs.tex
+**C:/Users/Alex/workspace/stv/report/report.tex
+(C:/Users/Alex/workspace/stv/report/report.tex
 LaTeX2e <2011/06/27>
 Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
 abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
@@ -69,7 +69,7 @@ File: lstmisc.sty 2014/09/06 1.5e (Carsten Heinz)
 File: listings.cfg 2014/09/06 1.5e listings configuration
 ))
 Package: listings 2014/09/06 1.5e (Carsten Heinz)
-(C:\Users\Alex\workspace\stv\report\srs.aux)
+(C:\Users\Alex\workspace\stv\report\report.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
@@ -95,7 +95,7 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 [1
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] (C:\Users\Alex\workspace\
-stv\report\srs.toc
+stv\report\report.toc
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <10.95> on input line 4.
 )
@@ -121,25 +121,91 @@ Underfull \hbox (badness 10000) in paragraph at lines 38--67
 
 ] [4] ("D:\Program Files (x86)\MiKTeX 2.9\tex\latex\listings\lstlang1.sty"
 File: lstlang1.sty 2014/09/06 1.5e listings language file
-) [5] [6] [7] [8] (C:\Users\Alex\workspace\stv\report\srs.aux) ) 
+) [5] [6]
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 150--168
+
+ []
+
+[7]
+Missing character: There is no Ã in font cmr10!
+Missing character: There is no ¼ in font cmr10!
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
+
+ []
+
+
+Overfull \hbox (117.08603pt too wide) in paragraph at lines 172--182
+\OT1/cmr/m/n/10.95 Retrieved from http://www.fujaba.de/fileadmin/Informatik/Fuj
+aba/Resources/Publications/Fujaba 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--182
+
+ []
+
+
+Overfull \hbox (22.52052pt too wide) in paragraph at lines 172--182
+\OT1/cmr/m/n/10.95 Retrieved from http://ti.arc.nasa.gov/m/profile/dimitra/publ
+ications/icse00.pdf 
+ []
+
+[8] (C:\Users\Alex\workspace\stv\report\report.aux) ) 
 Here is how much of TeX's memory you used:
- 2614 strings out of 493921
- 41157 string characters out of 3144879
- 117867 words of memory out of 3000000
- 5952 multiletter control sequences out of 15000+200000
- 8811 words of font info for 31 fonts, out of 3000000 for 9000
+ 2617 strings out of 493921
+ 41235 string characters out of 3144879
+ 118093 words of memory out of 3000000
+ 5954 multiletter control sequences out of 15000+200000
+ 9157 words of font info for 32 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 36i,8n,42p,774b,1065s stack positions out of 5000i,500n,10000p,200000b,50000s
-<D:/Program Fil
-es (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Program Files
- (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program Files (
-x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Program Files (x86
-)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Program Files (x86)/M
-iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on C:/Users/Alex/workspace/stv/report/srs.pdf (8 pages, 93917 by
-tes).
+ 36i,8n,42p,777b,1581s stack positions out of 5000i,500n,10000p,200000b,50000s
+<D:/Program Files (x86)/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><D:/Program Files (x86)/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><D:/Program Files (x86)/MiKTeX
+ 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><D:/Program Files (x86)/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmr12.pfb><D:/Program Files (x86)/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmr17.pfb><D:/Program Files (x86)/MiKTeX 2.9/font
+s/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on C:/Users/Alex/workspace/stv/report/report.pdf (8 pages, 11479
+8 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

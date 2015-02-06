@@ -3,7 +3,7 @@
 \usepackage{listings}
 
 \begin{document}
-\title{Final Report \\ \vspace{2mm} {\large Dynamic Visualization of State Transitions}}
+\title{Final Report \\ \vspace{2mm} {\large Dynamic Visualization of State Transition Systems}}
 \author{Alex Aalbertsberg (s1008129)}
 \maketitle
 
@@ -21,7 +21,7 @@ The system has been set up in a modular way, so that expansion by adding additio
 
 \section{Requirements}
 
-The first stage of the project was to establish proper boundaries for the project. This section lists the requirements that were set for the final product. These requirements were established over several review sessions.
+The first stage of the project was to establish proper boundaries for the project. This section lists the requirements that were set for the final product. These requirements were established over several review sessions.	
 
 The final product of this project should:
 
@@ -36,7 +36,7 @@ The final product of this project should:
 \section{Technology}
 \subsection{Design Choices}
 This section will describe the technology that has been used to create the final product. The decisions to utilize the technology listed below were made during the early stages of the project.\\\\
-First, we needed to decide what programming language to use. The programming languages that I was most familiar with were C\# and Java, so we decided to mainly focus on those languages. Below you will find a table with characteristics for each programming languages
+First, we needed to decide what programming language to use. The programming languages that I was most familiar with were C\# and Java, so we decided to focus mainly on those languages. Below you will find a table with characteristics for each programming languages pertaining to the requirements of the project.
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c || c | c |}
@@ -65,7 +65,7 @@ Based on the above criteria, the decision was made to write the application in J
 Based on the above criteria, the decision was made to let communication take place by sending JSON objects over an established TCP connection. XML's large overhead and no support existing for parsing CSV data left JSON to be the best option. The application therefore adopts the client-server paradigm as its communication protocol. This means that client applications (i.e. the application simulating the state diagram) will connect to the server application and send JSON objects containing information about the steps that have been taken, so that the server application may perform actions that correspond with the received information. You will find a description of currently supported commands and their parameters below.
 The library that has been used for JSON is the one from www.json.org. Their source code for supporting JSON is freely available on their website.
 \subsection{Application Design Specifics}
-The server application itself will consist of several classes:
+The application consists of several classes, which have been listed below. This design attempts to maintain a certain level of abstraction, so that expanding upon existing functionality does not require a lot of work.
 \begin{enumerate}
 \item The Main class. This class initializes the GUI and TCP Server, so that commands may be interpreted and updated on the user interface.
 \item The CommandProcessor class. This class deciphers the JSON data sent to the TCP server, interprets and then executes the specified command.
@@ -78,12 +78,12 @@ The client application will have to connect to the server application's IP addre
 
 \subsection{Commands and Parameters}
 
-Several initial commands and their parameters that are supported by the application are as follows:
+A JSONObject should contain the command key with a valid command as its value. The commands and corresponding parameters that are currently supported by the application are listed below. 
 \begin{enumerate}
 	\item init. This command allows the user to set initial GUI/application values.
 		\begin{enumerate}
-			\item GUI width. (int/double)
-			\item GUI height. (int/double)
+			\item GUI width. (``stageWidth'', double)
+			\item GUI height. (``stageHeight'', double)
 		\end{enumerate}
 	\begin{lstlisting}[language=java]
 	JSONObject obj = new JSONObject();
@@ -93,13 +93,12 @@ Several initial commands and their parameters that are supported by the applicat
 	\end{lstlisting}
 	\item set. This command allows the user to create elements on the GUI.
 		\begin{enumerate}
-			\item Identifier. (String)
-			\item X-axis position. (int/double)
-			\item Y-axis position. (int/double)
-			\item Width. 
-			\item Height.
-			\item Color.
-			\item Shape.
+			\item Identifier. (``id'', String)
+			\item X-axis position. (``posx'', int)
+			\item Y-axis position. (``posy'', int)
+			\item Color. (``colorCode'', String)
+			\item Shape. (``shape'', String (Supported values: ``circle'' or ``rectangle''))
+			\item Image. (``image'', Base64 String)
 		\end{enumerate}
 	\begin{lstlisting}[language=java]
 	JSONObject obj = new JSONObject();
@@ -111,9 +110,9 @@ Several initial commands and their parameters that are supported by the applicat
 	\end{lstlisting}
 	\item move. This command allows the user to move existing GUI elements.
 		\begin{enumerate}
-			\item Identifier.
-			\item New X-axis position.
-			\item New Y-axis position.
+			\item Identifier of the element to move. (``id'', String)
+			\item New X-axis position. (``posx'', int)
+			\item New Y-axis position. (``posy'', int)
 		\end{enumerate}
 	\begin{lstlisting}[language=java]
 	JSONObject obj = new JSONObject();
@@ -124,14 +123,14 @@ Several initial commands and their parameters that are supported by the applicat
 	\end{lstlisting}
 	\item remove. This command allows the user to remove an existing GUI element.
 		\begin{enumerate}
-			\item Identifier.
+			\item Identifier of the element to remove. If the specified identifier does not exist, this command does not have an effect. (``id'', String)
 		\end{enumerate}
 	\begin{lstlisting}[language=java]
 	JSONObject obj = new JSONObject();
 	obj.set(``command'', ``remove'');
 	obj.set(``id'', ``goat'');
 	\end{lstlisting}
-\end{enumerate}-
+\end{enumerate}
 
 
 \section{Test results}
@@ -141,36 +140,44 @@ For the sake of properly testing the final product, a testing method has been de
 \subsection{Wolf-Goat-Cabbage Problem}
 This problem deals with the following: A man is standing on the bank of a river with a wolf, a goat and a cabbage. The man wants to cross the river with all three of them. However, his boat will only allow him to take one of the three with him at a time. The other two will have to wait. When the man is not there, the wolf is capable of eating the goat, and the goat is capable of eating the cabbage.
 
-For this problem, both a success and a failure scenario have been created. These scenarios seem to work fine.
-Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
+For this problem, both a success and a failure scenario have been created. These scenarios test the functionality of each individual command and operate properly. Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
+
+The failure scenario moves the cabbage over to the other bank first, causing the wolf to ``eat'' the goat. The goat is then removed from the GUI.
 
 
 \section{Conclusions}
 
 In this section, we will check our final product by the standards of the requirements that were set at the start of the project:
-
-Requirement 1: Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.
+\\\\
+Requirement 1: Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.\\
 Result: The init and set commands provide functionality for an external application to set-up the initial GUI and instantiate objects that require a visual representation.
-
-Requirement 2:Be able to receive information about state transition steps from any state diagram tool.
+\\\\
+Requirement 2: Be able to receive information about state transition steps from any state diagram tool.\\
 Result: The application listens for a TCP connection on a certain port. Once a client application connects, that application may then send JSON objects over the connection.
-
-Requirement 3: Be able to interpret the received information and translate the abstract syntax that is received to a graphical representation which is also known as the concrete syntax.
+\\\\
+Requirement 3: Be able to interpret the received information and translate the abstract syntax that is received to a graphical representation which is also known as the concrete syntax.\\
 Result: The application reconstructs the JSON object it receives over the TCP connection and then translates the information contained to operations on the graphical interface.
-
-Requirement 4: Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.
+\\\\
+Requirement 4: Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.\\
 Result: A set of commands and respective parameters has been defined, as well as the commands' respective operations on the graphical user interface.
-
-Requirement 5: Update the visual representation (concrete syntax) according to the transition information that has been received.
+\\\\
+Requirement 5: Update the visual representation (concrete syntax) according to the transition information that has been received.\\
 Result: Each command has a corresponding effect on the state of the graphical user interface.
-
+\\\\
 All requirements set at the start of the project have been met.
 
 %Discussion and further development?
 
 \section{Related work}
-JTorX - a tool for Model-Based Testing.
-
-Other related work includes Visualization of State Transition Graphs by van Ham et al. at the University of Eindhoven. This research pertained to modelling state diagrams in 3D, so that users could get a better view of the overall structure of such a diagram.
+van Ham, F., van de Wetering, H. \& van Wijk, J.J. (n.d.). \textit{Visualization of State Transition Graphs.}\\
+Retrieved from http://www.win.tue.nl/\~wstahw/papers/infovis2001\_2.pdf
+\\\\
+Diethelm, I., Jubeh, R., Koch, A. \& Zündorf, A. (n.d.). \textit{WhiteSocks - A simple GUI Framework for Fujaba.}\\ Retrieved from http://www.fujaba.de/fileadmin/Informatik/Fujaba/Resources/Publications/Fujaba\\\_Days/FD07Proceedings.pdf\#page=38
+\\\\
+Belinfante, A. (n.d.). \textit{JTorX: a Tool for On-Line Model-Driven Test Derivation and Execution.} \\Retrieved from http://eprints.eemcs.utwente.nl/17751/01/main.pdf
+\\\\
+Belinfante, A. (n.d.). \textit{Documentatie TorXviz.}\\ Retrieved from http://fmt.cs.utwente.nl/tools/torxviz/
+\\\\
+Magee, J., Pryce, N., Giannakopoulou, D. \& Kramer, J. (n.d.) \textit{Graphical Animation of Behavior Models.}\\ Retrieved from http://ti.arc.nasa.gov/m/profile/dimitra/publications/icse00.pdf 
 
 \end{document}

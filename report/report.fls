@@ -1,7 +1,7 @@
 PWD C:/Users/Alex/workspace/stv/report
 INPUT C:/Users/Alex/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt
-INPUT C:/Users/Alex/workspace/stv/report/srs.tex
-OUTPUT C:/Users/Alex/workspace/stv/report/srs.log
+INPUT C:/Users/Alex/workspace/stv/report/report.tex
+OUTPUT C:/Users/Alex/workspace/stv/report/report.log
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/base/article.cls
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/base/article.cls
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/base/size11.clo
@@ -19,9 +19,9 @@ INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstmisc.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.cfg
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/listings.cfg
-INPUT C:/Users/Alex/workspace/stv/report/srs.aux
-INPUT C:/Users/Alex/workspace/stv/report/srs.aux
-OUTPUT C:/Users/Alex/workspace/stv/report/srs.aux
+INPUT C:/Users/Alex/workspace/stv/report/report.aux
+INPUT C:/Users/Alex/workspace/stv/report/report.aux
+OUTPUT C:/Users/Alex/workspace/stv/report/report.aux
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmr17.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmr8.tfm
@@ -32,22 +32,24 @@ INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmmi6.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmsy8.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmsy6.tfm
-OUTPUT C:/Users/Alex/workspace/stv/report/srs.pdf
+OUTPUT C:/Users/Alex/workspace/stv/report/report.pdf
 INPUT C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
-INPUT C:/Users/Alex/workspace/stv/report/srs.toc
-INPUT C:/Users/Alex/workspace/stv/report/srs.toc
+INPUT C:/Users/Alex/workspace/stv/report/report.toc
+INPUT C:/Users/Alex/workspace/stv/report/report.toc
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmbx10.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmmi10.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmsy10.tfm
-OUTPUT C:/Users/Alex/workspace/stv/report/srs.toc
+OUTPUT C:/Users/Alex/workspace/stv/report/report.toc
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
 INPUT D:/Program Files (x86)/MiKTeX 2.9/tex/latex/listings/lstlang1.sty
-INPUT C:/Users/Alex/workspace/stv/report/srs.aux
+INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/tfm/public/cm/cmti10.tfm
+INPUT C:/Users/Alex/workspace/stv/report/report.aux
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb
+INPUT D:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb
