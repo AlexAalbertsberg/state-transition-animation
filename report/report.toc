@@ -3,7 +3,7 @@
 \contentsline {section}{\numberline {3}Technology}{4}
 \contentsline {subsection}{\numberline {3.1}Design Choices}{4}
 \contentsline {subsection}{\numberline {3.2}Application Design Specifics}{5}
-\contentsline {subsection}{\numberline {3.3}Commands and Parameters}{5}
+\contentsline {subsection}{\numberline {3.3}Commands and Parameters}{6}
 \contentsline {section}{\numberline {4}Test results}{7}
 \contentsline {subsection}{\numberline {4.1}Wolf-Goat-Cabbage Problem}{7}
 \contentsline {section}{\numberline {5}Conclusions}{7}

@@ -13,30 +13,46 @@
 \clearpage
 \section{Introduction}
 
+%You jump from model-based development straight to state-transition models. There is a lot more to be said: for instance, many more types of models exist than just state-transition ones. Please provide more information and context.
+
+%An example might be useful to clarify to the reader what you are talking about
 In the current day and age, model-based software development is a technique that is often used to test the requirements and functionalities of a software system before physically building the system. These models are often not very readable to the tester and will not provide a clear overview of object states. The purpose behind this project is to create a way for users to have a visual overview of the software system's state while running simulation. This will provide a clear picture of the way in which the system operates.
 
-This document will describe a software system design for an application that can dynamically receive information from applications that generate state diagrams about transitions that take place during a simulation. The application will take the information about these transitions and visually represent them, so as to create a more clear full picture of the situation for the end user.
+This document will describe a software system design for an application that can dynamically receive information from applications that generate state transitions that take place during a simulation of a transition system. An example of such an application for transition systems is LTS Analyzer. The visualisation tool will take the information about these transitions and visually represent them, so as to create a more clear picture of the complete system state for the end user.
 
 The system has been set up in a modular way, so that expansion by adding additional functionality is not a difficult task. How this modular setup has been established will be described further in the report.
 
+Section 2 will explain the requirements that were set at the start of the project, as well as specify means of testing whether these requirements have been met. Section 3 will explain the design choices that were made during this project, highlight the system that has been built by use of a UML class diagram and provide an overview of the set of commands and respective parameters that the visualisation tool currently supports. Section 4 will provide an overview of the results of the testing methods that were specified in Section 2. Section 5 will draw conclusions about the final product as a whole, as well as provide possible ways to expand upon it. Finally, Section 6 will provide a list of related work and how it relates to this project.
+
 \section{Requirements}
 
+%In this report you should describe the product, not the process. If you wish, you can include a special section where you evaluate how the project has gone; this can include information about the process.
 The first stage of the project was to establish proper boundaries for the project. This section lists the requirements that were set for the final product. These requirements were established over several review sessions.	
 
 The final product of this project should:
 
 \begin{enumerate}
-	\item Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.
+	%The tool you are visualising just generates a state, not a diagram. How are states converted to diagrams?
+	\item Be able to create an initial visual representation of all objects in a transition system from the tool that generates state transitions.
 	\item Be able to receive information about state transition steps from any state diagram tool.
 	\item Be able to interpret the received information and translate the abstract syntax that is received to a graphical representation which is also known as the concrete syntax.
 	\item Support a preset schema of commands and respective parameters that allows client applications to perform GUI operations according to what happens in the state transitions.
 	\item Update the visual representation (concrete syntax) according to the transition information that has been received.
 \end{enumerate}
 
+%These requirements are OK in themselves, but you should also discuss how you intend to check whether your final product fulfills them. Moreover, the requirements are not booleans (satisfied or not satisfied); rather, they may be satisfied to some degree or with some level of quality. You should say something at this point about how you are going to test that.
+%For instance, we had at some point established a set of example scenarios that you wanted to be able to deal with. Such a list would be an example of what I mean.
+
+%I am missing a description of the chosen system architecture, where the state/transition generating tool is one component and the visualiser another one. This is a choice motivated by some of your requirements; maybe it is an obvious choice, but still it should be mentioned and explained.
+
+%The notion of sending commands and your discussion of transport protocols only make sense in the light of this architecture.
+
 \section{Technology}
 \subsection{Design Choices}
 This section will describe the technology that has been used to create the final product. The decisions to utilize the technology listed below were made during the early stages of the project.\\\\
-First, we needed to decide what programming language to use. The programming languages that I was most familiar with were C\# and Java, so we decided to focus mainly on those languages. Below you will find a table with characteristics for each programming languages pertaining to the requirements of the project.
+First, we needed to decide what programming language to use. The programming languages that %Writing style: avoid the use of I\tabularnewline
+I was most familiar with were C\# and Java, so we decided to focus mainly on those languages. Below you will find a table with characteristics for each programming languages pertaining to the requirements of the project.
+%Please explain why the three lines in this table are requirements for your choice. Do they follow  from the requirements in Section 2?
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c || c | c |}
@@ -50,6 +66,8 @@ First, we needed to decide what programming language to use. The programming lan
 	\end{center}
 \end{table}\\\\
 Based on the above criteria, the decision was made to write the application in Java 8 and uses the native library JavaFX for user interfacing. Java has been chosen in order to maintain as much scalability as possible.
+
+%Introduce and explain this table. The same remark for Table 1 applies here as well.
 \begin{table}[h]
 	\begin{center}
 		\begin{tabular}{| c || c | c | c |}
@@ -61,11 +79,14 @@ Based on the above criteria, the decision was made to write the application in J
 		\end{tabular}
 		\caption{Comparison of Transport Protocols}
 	\end{center}
-\end{table}\\\\
-Based on the above criteria, the decision was made to let communication take place by sending JSON objects over an established TCP connection. XML's large overhead and no support existing for parsing CSV data left JSON to be the best option. The application therefore adopts the client-server paradigm as its communication protocol. This means that client applications (i.e. the application simulating the state diagram) will connect to the server application and send JSON objects containing information about the steps that have been taken, so that the server application may perform actions that correspond with the received information. You will find a description of currently supported commands and their parameters below.
+\end{table}
+%Describe the criteria and why does the choice for JSON follow?
+Based on the above criteria, the decision was made to let communication take place by sending JSON objects over an established TCP connection. XML's large overhead and no support existing for parsing CSV data left JSON to be the best option. The application therefore adopts the client-server paradigm as its communication protocol. This means that client applications (i.e. the application simulating the state diagram) will connect to the server application and send JSON objects containing information about the steps that have been taken, so that the server application may perform actions that correspond with the received information. A description of currently supported commands and their parameters can be found below.
 The library that has been used for JSON is the one from www.json.org. Their source code for supporting JSON is freely available on their website.
 \subsection{Application Design Specifics}
 The application consists of several classes, which have been listed below. This design attempts to maintain a certain level of abstraction, so that expanding upon existing functionality does not require a lot of work.
+
+%I would appreciate something like a class diagram.
 \begin{enumerate}
 \item The Main class. This class initializes the GUI and TCP Server, so that commands may be interpreted and updated on the user interface.
 \item The CommandProcessor class. This class deciphers the JSON data sent to the TCP server, interprets and then executes the specified command.
@@ -78,13 +99,16 @@ The client application will have to connect to the server application's IP addre
 
 \subsection{Commands and Parameters}
 
-A JSONObject should contain the command key with a valid command as its value. The commands and corresponding parameters that are currently supported by the application are listed below. 
+A JSONObject should contain the command key with a valid command as its value. The commands and corresponding parameters that are currently supported by the application are listed below.
+%The general scheme of how to represent a command in JSON may be interesting, but I don't have to see examples of that for every individual command. It is much more interesting to hear what choices you have made, what alternatives there are, how these commands could be extended, what you will do if there is an error in one of the parameters. These are all things we discussed!
+
 \begin{enumerate}
 	\item init. This command allows the user to set initial GUI/application values.
 		\begin{enumerate}
 			\item GUI width. (``stageWidth'', double)
 			\item GUI height. (``stageHeight'', double)
 		\end{enumerate}
+	%This is typeset very badly. Use the LaTeX "listings" package
 	\begin{lstlisting}[language=java]
 	JSONObject obj = new JSONObject();
 	obj.set(``command'', ``init'');
@@ -140,18 +164,22 @@ For the sake of properly testing the final product, a testing method has been de
 \subsection{Wolf-Goat-Cabbage Problem}
 This problem deals with the following: A man is standing on the bank of a river with a wolf, a goat and a cabbage. The man wants to cross the river with all three of them. However, his boat will only allow him to take one of the three with him at a time. The other two will have to wait. When the man is not there, the wolf is capable of eating the goat, and the goat is capable of eating the cabbage.
 
+%I don't want a textual description at this point; I'd much rather see the actual commands (in readable notation, not JSON!) and some figures.
 For this problem, both a success and a failure scenario have been created. These scenarios test the functionality of each individual command and operate properly. Of course, the success scenario first places the goat on the other bank, as the wolf and the cabbage share no interaction that would hinder progress. The man could then take either the wolf or the cabbage to the opposite bank (it does not matter which one) and takes the goat back to the first bank. Then, the man will take the wolf or the cabbage (whichever he did not take with him previously). Now, the goat will be the only one left on the first bank, allowing a simple cross to complete the problem.
 
 The failure scenario moves the cabbage over to the other bank first, causing the wolf to ``eat'' the goat. The goat is then removed from the GUI.
 
 
 \section{Conclusions}
+%Future work: what extensions or commands can you think of that you didn't have time to implement?
 
+Evaluation: looking back, are you happy with your setup or would you do things differently now?
 In this section, we will check our final product by the standards of the requirements that were set at the start of the project:
 \\\\
 Requirement 1: Be able to create an initial visual representation of a state diagram from the tool that generated said diagram.\\
 Result: The init and set commands provide functionality for an external application to set-up the initial GUI and instantiate objects that require a visual representation.
 \\\\
+%You have not demonstrated this in your work, since you have not made the connection to any "state diagram tool". Not necessarily a problem (you can't do everything) but you should mention such things
 Requirement 2: Be able to receive information about state transition steps from any state diagram tool.\\
 Result: The application listens for a TCP connection on a certain port. Once a client application connects, that application may then send JSON objects over the connection.
 \\\\
@@ -166,9 +194,11 @@ Result: Each command has a corresponding effect on the state of the graphical us
 \\\\
 All requirements set at the start of the project have been met.
 
-%Discussion and further development?
-
 \section{Related work}
+%A related-work section should not just cite the papers but also discuss what they are about and how they are related to the work you have done.
+
+The citations themselves should provide more information about where the papers are published and when; and they should be numbered and formatted. Check the papers themselves for examples of this. Use BibTeX for formatting.
+
 van Ham, F., van de Wetering, H. \& van Wijk, J.J. (n.d.). \textit{Visualization of State Transition Graphs.}\\
 Retrieved from http://www.win.tue.nl/\~wstahw/papers/infovis2001\_2.pdf
 \\\\
