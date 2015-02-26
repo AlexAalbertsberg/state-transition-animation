@@ -1,10 +1,17 @@
 \contentsline {section}{\numberline {1}Introduction}{3}
-\contentsline {section}{\numberline {2}Requirements}{3}
-\contentsline {section}{\numberline {3}Technology}{4}
-\contentsline {subsection}{\numberline {3.1}Design Choices}{4}
-\contentsline {subsection}{\numberline {3.2}Application Design Specifics}{5}
-\contentsline {subsection}{\numberline {3.3}Commands and Parameters}{6}
-\contentsline {section}{\numberline {4}Test results}{7}
-\contentsline {subsection}{\numberline {4.1}Wolf-Goat-Cabbage Problem}{7}
-\contentsline {section}{\numberline {5}Conclusions}{7}
-\contentsline {section}{\numberline {6}Related work}{8}
+\contentsline {section}{\numberline {2}Requirements}{4}
+\contentsline {section}{\numberline {3}Technology}{5}
+\contentsline {subsection}{\numberline {3.1}System Architecture}{5}
+\contentsline {subsection}{\numberline {3.2}Design Choices}{6}
+\contentsline {subsubsection}{\numberline {3.2.1}Paradigm}{6}
+\contentsline {subsubsection}{\numberline {3.2.2}Programming Language}{6}
+\contentsline {subsubsection}{\numberline {3.2.3}Data Format}{7}
+\contentsline {subsection}{\numberline {3.3}Application Design Specifics}{7}
+\contentsline {subsection}{\numberline {3.4}Commands and Parameters}{8}
+\contentsline {section}{\numberline {4}Test results}{10}
+\contentsline {subsection}{\numberline {4.1}Wolf-Goat-Cabbage Problem}{11}
+\contentsline {section}{\numberline {5}Conclusions}{12}
+\contentsline {section}{\numberline {6}Discussion}{12}
+\contentsline {section}{\numberline {7}Related work}{13}
+\contentsline {section}{\numberline {8}Appendices}{14}
+\contentsline {subsection}{\numberline {8.1}Appendix A: Simulation Screenshots}{14}
